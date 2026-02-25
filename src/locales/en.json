@@ -1,0 +1,128 @@
+{
+    "home": "Home",
+    "about_us": "About Us",
+    "why_choose_us": "Why Choose Us",
+    "contact_us": "Contact Us",
+    "best_deals": "Best Deals",
+    "screenshot": "Screenshot",
+    "download_app": "Download App",
+    "become_partner": "Become Partner",
+    
+    "h_find_places": "Find Fun, Fast with MyGuideAI",
+    "find_places": "Discover Top Attractions, Events, Offers, Dining & Places with AI",
+    "new_activities": "Near by Activities",
+    "100+": "100+",
+    "250": "250",
+    "50+": "50+",
+    "places": "Places",
+    "deals": "Offer",
+    "events": "Events",
+
+    "about_mission": "Who we are",
+    "helping": "Your Smart Guide to Places, Travel, Events, Offers & Experiences",
+    "about_para": "MyGuideAI is the smart travel companion app for the UAE. It helps you discover top attractions, local events, restaurants, and hotel deals in Dubai, Abu Dhabi, and worldwide.",
+    "our_mission": "Our Mission",
+    "mission_para": "To simplify travel planning with AI-driven, personalized recommendations for every journey.",
+    "our_vision": "Our Vision",
+    "vision_para": "To become the world’s most trusted AI travel and events guide.",
+    "our_history": "Our Value",
+    "history_para": "Innovation, personalization, user-centric design, and seamless travel experiences",
+
+    "find_places_with_ai": "Find Places, Events, Deals, Hotels and Restaurants, with AI in seconds",
+    "business_writing": "Show me the best coffee shops in Abu Dhabi",
+    "ai": "Start with AI",
+
+    "why_choose": "Why Choose Us",
+    "we_offer": "Discover AI-Powered Exploration around you",
+    "offer_para": "MyGuideAI leverages AI to deliver personalized travel recommendations, ensuring you discover attractions, events, places and offers tailored just for you. MyGuideAI, your smart travel companion offering insights on local events, restaurants, and hotel deals in the UAE and worldwide.",
+    "offer_helpful": "MyGuideAI App",
+    "helpful_para": "Download MyGuideAI App to discover Top Attractions, Events, Offers, Dining & Places with AI in the UAE and worldwide.",
+    "discount_coupons": "Find discounts and offers",
+    "discount_para": "Enjoy the wide variety of partners for offers and discounts. Benefit from a diverse range of partner offers and discounts.",
+    "enjoy_events": "MyGuide AI Chatbot",
+    "events_para": "Talk to our AI personal assistant to discover places and get weather updates. AI-driven, personalized recommendations simplify travel planning.",
+
+    "latest_coupon": "Discover top offers, discounts, events, and destinations in Abu Dhabi and worldwide with MyGuideAI.",
+    "best_offer": "Best Offer",
+    "best_offer_para": "Access a wide range of offers and discounts from a variety of partners stores in your area or anywhere in the world.",
+    "discount_coupon": "Events",
+    "dis_para": "MyGuidAI helps you to discover and access the upcoming events in town. Let our AI engine show you what is happening around you.",
+    "top_deals": "Places",
+    "places_para": "Explore top tourist destinations such as hotels, parks, venues, entertainment places in Abu Dhabi, Dubabi and acorss the world.",
+
+    "mobile_app": "Our Mobile App",
+    "myGiude_app": "My Guide Mobile App and screenshots",
+
+    "download_mobApp": "Download Our Mobile App",
+
+    "myGuide": "MyGuideAi",
+    
+    "email_num": "hello@myguideai.com",
+    "top_links": "Top Links",
+    
+    "partner_login": "Explore the world of endless possibilities with our state of the art AI system.",
+
+    "privacy_policy": "Privacy Policy",
+    "terms_condition": "Terms and Condition",
+
+    "copyright": "© Copyrights 2025. All rights reserved",
+
+    "reg_business": "Register Your Business with MyGuideAI to unlock he global potential and visibility.",
+    "partner_platform": "We are Proud of our partners for joining us in our platform.",
+    "contact_info": "Contact Us Info",
+    "business_name": "Business Name *",
+    "business_type": "Business Type",
+    "business_address": "Address",
+    "business_number": "Phone Number *",
+    "business_email": "Email *",
+    "business_website": "Website",
+
+    "personal_info": "Personal Info",
+    "personal_name": "Full Name",
+    "personal_title": "Title",
+    "personal_number": "Mobile Number",
+    "personal_trade": "Upload Trade License",
+
+    "registering": "Registering...",
+    "register": "Register",
+
+    "loading_types": "Loading types...",
+
+    "privacy_policies_para_1": "MyGuide is committed to protecting the privacy of all visitors to our website, myGuide.qa, as well as users who access our services through any mobile application or digital platform (together referred to as the 'Website'). This policy explains how we collect, use, and safeguard your personal information.",
+    "privacy_policies_para_2": "By accessing or using our website and services, you agree to the practices described in this policy. Where required, you also consent to the collection, use, and transfer of your personal data as set out below.",
+
+    "privacy_policy_info_heading": "1. Information We Collect",
+    "privacy_policies_para_3": "When you visit the Website or place an order, we may ask you to provide certain personal information. This includes your name, contact details, nationality, date of birth, gender, and payment information such as credit or debit card details. Additionally, we may collect data on your usage of the Website, including messages you post and communications you send to us.",
+    "privacy_policies_para_4": "When you access our services using a mobile device or application, we may also collect technical data automatically. This can include location information, device characteristics, connection type, IP address, mobile payment methods, and interaction with retail technologies such as NFC tags or QR codes. Unless your device settings are configured to prevent this, such information may be collected and used by us.",
+
+    "privacy_policy_info_heading_2": "2. Use of your Information",
+    "privacy_policies_para_6": "We use the information you provide to deliver the services you request, manage your orders, and give you access to the Website’s features. Your information helps us process payments, contact you about your orders, and support customer service needs. We also analyze this data to improve and develop our platform, services, and overall business operations.",
+    "privacy_policies_para_7": "Additionally, we may use your information to contact you for feedback, service updates, or notifications about important changes. With your consent, we may also use your information for marketing purposes—to inform you about other products or services you may be interested in, via email, SMS, or phone.",
+    "privacy_policies_para_8": "With your permission, we may share your information with selected third parties, including companies in the food, retail, or marketing industries, so they can offer services that may interest you. You may opt out of receiving such communications at any time by contacting us or updating your preferences in your profile.",
+    "privacy_policies_para_9": "If you provide comments or feedback on our website or services, you agree that we may use this content for marketing or promotional purposes. We will only identify you by your first name and city of residence.",
+
+    "privacy_policy_info_heading_3": "3. Disclosure of Your Information",
+    "privacy_policies_para_10": "Your personal information may be stored on our secure servers. We may also share it with trusted third parties who support our services—such as payment processors and delivery partners. If you place an order with one of our partner merchants, your information may be shared with them to fulfill your request.",
+    "privacy_policies_para_11": "By submitting your personal data, you agree to the transfer, storage, and processing of your information as outlined in this policy. We ensure all reasonable steps are taken to handle your data securely and in accordance with applicable laws.",
+    "privacy_policies_para_12": "If you have given your consent, we may allow carefully selected partners, including advertising agencies and affiliates, to contact you occasionally with offers or services they believe may be relevant to you. You may withdraw this consent at any time by updating your preferences or contacting us.",
+    "privacy_policies_para_13": "If our business is ever sold, merged, or enters into a joint venture, your data may be transferred to our new business partners or legal successors. We may also disclose your data if required by law or legal proceedings, or to protect our rights and the rights of our users or partners. This may include sharing information with fraud prevention or law enforcement agencies.",
+
+    "privacy_policy_info_heading_4": "4. Security and Data Retention",
+    "privacy_policies_para_14": "We are committed to protecting your personal data and have implemented appropriate security measures to prevent unauthorized access, accidental loss, or misuse. Your data will be retained only for as long as necessary to fulfill the purposes outlined in this policy or as required by law.",
+    "privacy_policies_para_15": "If you create a password to access your account, it is your responsibility to keep it confidential. We strongly advise you not to share your password with anyone.",
+    "privacy_policies_para_16": "While we take all reasonable steps to protect your data, please be aware that transmitting information over the internet is never completely secure. Any data you send to us is at your own risk. Once received, we apply strict security controls to prevent unauthorized access.",
+
+    "privacy_policy_info_heading_5": "5. Changes to This Privacy Policy",
+    "privacy_policies_para_17": "Any updates or changes to this privacy policy will be posted on our Website. Where appropriate, we will also notify you via email or through the Website.",
+    "privacy_policies_para_18": "For any questions, concerns, or to update your data preferences, please contact us at:legal@myGuide.qa",
+    "privacy_policies_para_19": "Let me know if you'd like this as a downloadable file or if you'd like to add sections for Cookies, User Rights, or anything else.",
+
+    "privacy_policy_info_heading_6": "6. Risk & Fraud Management Policy",
+    "privacy_policies_para_20": "At myGuide, we apply advanced systems and strict policies to protect our users, merchants, and platform from fraud, abuse, and unauthorized activity. Our platform implements real-time monitoring, AI-based fraud detection, secure encryption protocols, and data access controls to safeguard all transactions and activities.",
+    "privacy_policies_para_21": "Customers, stakeholders, and partners are encouraged to report any disputes, suspicious activities, or potential fraud directly through the following channels:Customers, stakeholders, and partners are encouraged to report any disputes, suspicious activities, or potential fraud directly through the following channels:",
+    "privacy_policies_para_22": "The in-app dispute system",
+    "privacy_policies_para_23": "The website contact form at myGuide.qa",
+    "privacy_policies_para_24": "By emailing us at support@myGuide.qa",
+    "privacy_policies_para_25": "All reports are reviewed and handled confidentially by our internal Risk & Compliance team. In cases of confirmed fraudulent behavior or misuse of the platform (e.g., fake orders, false complaints, abuse of promotions), MyGuide reserves the right to suspend or terminate the involved account.",
+    "privacy_policies_para_26": "We are committed to maintaining a safe, fair, and transparent ecosystem for everyone using the MyGuide platform."
+}
