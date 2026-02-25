@@ -2,7 +2,7 @@
   "name": "admin",
   "version": "0.1.0",
   "private": true,
-  "homepage": "",
+  "homepage": "/CINDEX",
   "dependencies": {
     "@paypal/react-paypal-js": "^8.7.0",
     "@popperjs/core": "^2.11.8",
