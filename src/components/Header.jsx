@@ -1,165 +1,91 @@
-import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.png";
-
-import { useTranslation } from "react-i18next";
-// Navbar Menu
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-const Navbar = () => {
-  const location = useLocation();
+const Header = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [activeLink, setActiveLink] = useState("/");
-
-  const languages = [
-    { name: "EN", code: "en", flag: "https://flagcdn.com/w320/us.png" },
-    { name: "العربية", code: "ar", flag: "https://flagcdn.com/w320/sa.png" },
-  ];
-
-  const handleLanguageChange = (code) => {
-    i18n.changeLanguage(code);
-  };
+  const navRef = useRef(null);
+  const [indicator, setIndicator] = useState({ left: 0, width: 0, opacity: 0 });
 
   useEffect(() => {
-    const handleScroll = () => {
-      const offset = window.scrollY;
-      if (offset > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 50);
     };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const { t, i18n } = useTranslation();
-  const { pathname } = useLocation();
-
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    const el = navRef.current?.querySelector(".nav-link.active");
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const pr = navRef.current.getBoundingClientRect();
+    setIndicator({ left: r.left - pr.left, width: r.width, opacity: 1 });
+  }, []);
 
-  useEffect(() => {
-    const currentLang = i18n.language;
-    const direction = currentLang === "ar" ? "rtl" : "ltr";
-    document.documentElement.setAttribute("dir", direction);
-    document.documentElement.setAttribute("lang", currentLang);
-  }, [i18n.language]);
+  const handleHover = (e) => {
+    const target = e.currentTarget;
+    const r = target.getBoundingClientRect();
+    const pr = navRef.current.getBoundingClientRect();
+    setIndicator({ left: r.left - pr.left, width: r.width, opacity: 1 });
+  };
 
   return (
-    <nav
-      className={`navbar navbar-expand-lg sticky ${
-        scrolled ? "navbar-light bg-white shadow" : "navbar-dark bg-transparent"
-      }`}
-    >
-      <div className="container nav-main">
-        {/* Logo */}
-        <a className="navbar-brand d-flex align-items-center justify-content-center mx-0" href="#">
-          <img src={logo} alt="My Guide" className="logo" />
-        </a>
-
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        {/* Navbar Links */}
-        <div
-          className="collapse navbar-collapse justify-content-end custom-collapse"
-          id="navbarNav"
-        >
-          <ul className="navbar-nav nav-res">
-            <li className="nav-item">
-              <Link className="nav-link active" to={"/"}>
-                {t("home")}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#about">
-                {t("about_us")}
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#whyChooseUs">
-                {t("why_choose_us")}
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#screenshot">
-                {t("best_deals")}
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#downloadApp">
-                {t("screenshot")}
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#downloadApp">
-                {t("download_app")}
-              </a>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/BecomePartner">
-                {t("contact_us")}
-              </Link>
-            </li>
-
-            <li>
-              <div className="d-flex align-items-center btns-navbar ms-auto">
-                {languages
-                  .filter((lang) => lang.code !== i18n.language)
-                  .map((lang) => (
-                    <div
-                      key={lang.code}
-                      onClick={() => handleLanguageChange(lang.code)}
-                      className="lang-item"
-                      style={{
-                        cursor: "pointer",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "5px",
-                      }}
-                    >
-                      <div className="shadow lang-border">
-                        <span className="lang-name fw-bold" style={{ fontSize: "15px" }}>{lang.name}</span>
-                        <i className="bi bi-globe"></i>
-                      </div>
-                    </div>
-                  ))}
-                <Link
-                  className="btn btn-base btn-lg partner-btn rounded-pill mt-0"
-                  to="/BecomePartner"
-                >
-                  <i className="fas fa-user-circle"></i>
-                  {t("become_partner")}
-                </Link>
-              </div>
-            </li>
-
-            {/* <Link
-              className="btn btn-base btn-lg partner-btn rounded-pill mt-0 ms-3"
-              to="/BecomePartner"
-            >
-              <li className="nav-item" style={{ fontSize: "16px" }}>
-                {t("become_partner")}
-              </li>
-            </Link> */}
-          </ul>
+    <header className="cindex-header sticky-top">
+      <div className={`header-topbar ${scrolled ? "shadow-sm" : ""}`}>
+        <div className="container px-5 d-flex align-items-center justify-content-between py-4">
+          <div className="d-flex align-items-center">
+            <img src={logo} alt="CINDEX" className="cindex-logo" />
+          </div>
+          <div className="topbar-center d-none d-md-block">
+            Contact : +971 52 571 0831 &nbsp; | &nbsp; Email : cindex@trading.com
+          </div>
+          <div className="d-flex gap-2">
+            <button type="button" className="btn btn-individual px-3 rounded-3">Individual</button>
+            <button type="button" className="btn btn-institutional px-3 rounded-3">Institutional</button>
+          </div>
         </div>
       </div>
-    </nav>
+
+      <div className="header-nav-wrapper">
+        <div className="container px-5">
+          <div className="nav-container d-flex align-items-center justify-content-between ps-3 ps-md-4">
+            <ul className="nav nav-underline gap-2 gap-md-3 position-relative" ref={navRef}>
+              <div
+                className="nav-underline-indicator"
+                style={{ transform: `translateX(${indicator.left}px)`, width: indicator.width, opacity: indicator.opacity }}
+              />
+              <li className="nav-item">
+                <Link className="nav-link cindex-link active" to="/" onMouseEnter={handleHover}>Home</Link>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link cindex-link" href="#product" onMouseEnter={handleHover}>Product</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link cindex-link" href="#accounts" onMouseEnter={handleHover}>Accounts</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link cindex-link" href="#platforms" onMouseEnter={handleHover}>Platforms</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link cindex-link" href="#insights" onMouseEnter={handleHover}>Insights</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link cindex-link" href="#company" onMouseEnter={handleHover}>Company</a>
+              </li>
+            </ul>
+            <div className="auth-group">
+              <Link to="/login" className="auth-login">Login</Link>
+              <Link to="/open-account" className="auth-open">Open Account</Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
   );
 };
 
-export default Navbar;
+export default Header;

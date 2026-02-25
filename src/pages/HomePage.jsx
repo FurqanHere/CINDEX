@@ -2,20 +2,19 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-// import headerImg from "../assets/images/header-img.png"
-// import mission from "../assets/images/mission.png"
-// import vision from "../assets/images/vision.png"
-// import history from "../assets/images/history.png"
-// import stars from "../assets/images/stars.png";
-// import whyChooseUs from "../assets/images/choose-img.png";
-// import gear from "../assets/images/gear.png";
-// import blackCoupon from "../assets/images/Black-coupon.png";
-// import event from "../assets/images/events.png";
-// import offer from "../assets/images/bestOffer.png";
-// import coupon from "../assets/images/coupon.png";
-// import topDeals from "../assets/images/topDeals.png";
-// import screenshot from "../assets/images/mob-screenshot.png";
-// import downloadBtns from "../assets/images/download-btns.png";
+import headerImg from "../assets/images/banner-img.png"
+import headerVideo from "../assets/images/headerVideo.mp4"
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
+import investorsImg from "../assets/images/investors-img.png";
+import investorsGraph from "../assets/images/investors-graph.png";
+import groupPeople from "../assets/images/groupPeople.png";
+import tradeGraph from "../assets/images/tradeGraph.png";
+import establish from "../assets/images/establish.png";
+import awards from "../assets/images/awards.png";
+import tradeBgImg from "../assets/images/tradeBgImg.png";
+import laptopGraph from "../assets/images/laptop-graph.png";
 
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
@@ -65,6 +64,8 @@ const HomePage = () => {
   }, []);
 
   const { t, i18n } = useTranslation();
+  const investorsListRef = useRef(null);
+  const investorsThumbRef = useRef(null);
 
   useEffect(() => {
     const currentLang = i18n.language;
@@ -73,217 +74,277 @@ const HomePage = () => {
     document.documentElement.setAttribute("lang", currentLang);
   }, [i18n.language]);
 
+  useEffect(() => {
+    const updateHeroOverlap = () => {
+      const header = document.querySelector(".cindex-header");
+      if (!header) return;
+      const h = header.offsetHeight || 0;
+      document.documentElement.style.setProperty("--hero-overlap", `${h}px`);
+    };
+    updateHeroOverlap();
+    window.addEventListener("resize", updateHeroOverlap);
+    return () => window.removeEventListener("resize", updateHeroOverlap);
+  }, []);
+
+  useEffect(() => {
+    const list = investorsListRef.current;
+    const thumb = investorsThumbRef.current;
+    if (!list || !thumb) return;
+    const updateThumb = () => {
+      const vh = list.clientHeight;
+      const sh = list.scrollHeight;
+      const ratio = Math.max(vh / sh, 0.1);
+      const thumbH = Math.max(vh * ratio, 40);
+      const maxScroll = Math.max(sh - vh, 1);
+      const top = (list.scrollTop / maxScroll) * (vh - thumbH);
+      thumb.style.height = `${thumbH}px`;
+      thumb.style.transform = `translateY(${top}px)`;
+    };
+    updateThumb();
+    list.addEventListener("scroll", updateThumb);
+    window.addEventListener("resize", updateThumb);
+    return () => {
+      list.removeEventListener("scroll", updateThumb);
+      window.removeEventListener("resize", updateThumb);
+    };
+  }, []);
 
   return (
     <>
-      <div
-        className="main-bg-clr"
-        style={{
-          background: "linear-gradient(to right, #d3e9ff, #ffffff)",
-          height: "800px",
-        }}
-      >
+      <div>
         <Header />
-        {/* Banner Sec */}
-        <div className="header-banner" id="home">
-          <div className="container" style={{ paddingTop: "140px" }}>
-            <div className="row">
-              <div
-                className="col-md-5 col-sm-12 findPlaces-main"
-                data-aos="zoom-in"
-              >
-                <div className="findPlaces shadow-sm">
-                  <p>{t("h_find_places")}</p>
+        <section className="cindex-hero" id="home">
+          <video className="hero-bg-video" src={headerVideo} autoPlay muted loop playsInline />
+          <div className="container">
+            <div className="row align-items-center">
+              <div className="col-lg-6 col-md-7">
+                <h1 className="hero-heading">Trade With Top Tier Global Brokerage Firm</h1>
+                <p className="hero-sub">Empowering Traders for over 15 years</p>
+                <div className="hero-kpis d-flex align-items-start">
+                  <div className="kpi-item">
+                    <div className="kpi-number">0%</div>
+                    <div className="kpi-label">Commission</div>
+                  </div>
+                  <div className="kpi-item">
+                    <div className="kpi-number">$1.5 Trillion +</div>
+                    <div className="kpi-label">Quarterly Trading Volume</div>
+                  </div>
+                  <div className="kpi-item">
+                    <div className="kpi-number">0.4</div>
+                    <div className="kpi-label">Pip Spreads</div>
+                  </div>
                 </div>
-                <div className="header-txt">
-                  <h1 className="fw-light">{t("find_places")}</h1>
-                  <p className="fs-3 mt-5 fw-light">{t("new_activities")}</p>
-                  <div className="d-flex boxes">
-                    <div className="box shadow">
-                      <span className="fs-4 fw-bold">{t("100+")}</span>
-                      <span className="fw-lighter fs-5 text-secondary">
-                        {t("places")}
-                      </span>
+                <div className="hero-actions mt-4 d-flex gap-3">
+                  <a href="#open-account" className="btn btn-hero-open">Open an account</a>
+                  <a href="#try-demo" className="btn btn-hero-demo">Try a Demo</a>
+                </div>
+              </div>
+              <div className="col-lg-6 col-md-5 mt-4 mt-md-0">
+                <div className="hero-media">
+                  <img src={headerImg} alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="market-slider-section">
+          <div className="container py-5">
+            <div className="text-center mb-4">
+              <div className="market-label"><i className="bi bi-graph-up-arrow me-2"></i>Market Analysis</div>
+              <h2 className="market-title">Unlock Market Opportunities</h2>
+            </div>
+            <div className="market-swiper-wrap">
+              <Swiper
+                className="market-swiper"
+                modules={[Autoplay]}
+                loop={true}
+                autoplay={{ delay: 2500, disableOnInteraction: false, pauseOnMouseEnter: true }}
+                speed={650}
+                spaceBetween={20}
+                slidesPerView={"auto"}
+                centeredSlides={false}
+              >
+                {[
+                  { sym: "XAUUSD", price: "5174.57500", change: "-0.00500", graph: require("../assets/images/graph1.png") },
+                  { sym: "GBPUSD", price: "5165.62000", change: "0.35000", graph: require("../assets/images/graph2.png") },
+                  { sym: "USDCHF", price: "0.77373", change: "-0.00001", graph: require("../assets/images/graph3.png") },
+                  { sym: "NZDUSD", price: "0.77373", change: "0.00010", graph: require("../assets/images/graph4.png") },
+                  { sym: "EURUSD", price: "1.08720", change: "-0.00022", graph: require("../assets/images/graph2.png") },
+                  { sym: "USOIL", price: "79.220", change: "0.230", graph: require("../assets/images/graph3.png") }
+                ].map((i, idx) => (
+                  <SwiperSlide key={i.sym} className="market-slide">
+                    <div className="market-card">
+                      <div className="market-card-head"></div>
+                      <img src={i.graph} alt="" className="graph-img" />
+                      <div className="market-card-body">
+                        <div className="market-sym">{i.sym}</div>
+                        <div className="market-row">
+                          <span className="market-price">{i.price}</span>
+                          <span className={`market-change ${i.change.startsWith('-') ? 'down' : 'up'}`}>{i.change}</span>
+                        </div>
+                        <a className="btn market-trade-btn" href="#trade">Trade</a>
+                      </div>
                     </div>
-                    <div className="box shadow mx-3">
-                      <span className="fs-4 fw-bold">{t("250")}</span>
-                      <span className="fw-lighter fs-5 text-secondary">
-                        {t("deals")}
-                      </span>
-                    </div>
-                    <div className="box shadow">
-                      <span className="fs-4 fw-bold">{t("50+")}</span>
-                      <span className="fw-lighter fs-5 text-secondary">
-                        {t("events")}
-                      </span>
-                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
+        </section>
+        <section className="investors-section">
+          <div className="container py-5">
+            <div className="text-center mb-4">
+              <h2 className="investors-title">Why Investors Around the World Choose CINDEX</h2>
+              <p className="investors-sub">There are many benefits to trading with Cindex, explore the advantages we offer below.</p>
+            </div>
+            <div className="row g-4 align-items-stretch">
+              <div className="col-lg-5">
+                <div className="investors-media shadow-lg">
+                  <img src={investorsImg} alt="Investors" />
+                </div>
+              </div>
+              <div className="col-lg-7">
+                <div className="investors-panel">
+                  <div className="investors-list" ref={investorsListRef}>
+                    {Array.from({ length: 8 }).map((_, idx) => (
+                      <div className={`investor-card ${idx === 1 ? "active" : ""}`} key={idx}>
+                        <div className="investor-card-text">
+                          <div className="investor-title">Multi-regulated trading platform</div>
+                          <div className="investor-meta">governed by leading regulatory authorities across the world's most important financial jurisdictions</div>
+                        </div>
+                        <img src={investorsGraph} className="investor-graph" alt="" />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="investors-scrollbar">
+                    <div className="investors-thumb" ref={investorsThumbRef}></div>
                   </div>
                 </div>
               </div>
-              {/* Right Side */}
-              <div className="col-md-7 col-sm-12" data-aos="zoom-in">
-                <div className="header-img">
-                  {/* <img src={headerImg} style={{ marginTop: "-50px" }} /> */}
+            </div>
+          </div>
+        </section>
+        <section className="stats-band-section">
+          <div className="container">
+            <div className="stats-grid">
+              <div className="stat-item">
+                <img src={groupPeople} alt="" className="stat-icon" />
+                <div className="stat-number">95K+</div>
+                <div className="stat-label">Client Accounts</div>
+              </div>
+              <div className="stat-item">
+                <img src={tradeGraph} alt="" className="stat-icon" />
+                <div className="stat-number">$ 200 +</div>
+                <div className="stat-label">Trillion Traded value</div>
+              </div>
+              <div className="stat-item">
+                <img src={establish} alt="" className="stat-icon" />
+                <div className="stat-number">2011</div>
+                <div className="stat-label">Established Since</div>
+              </div>
+              <div className="stat-item">
+                <img src={awards} alt="" className="stat-icon" />
+                <div className="stat-number">150 +</div>
+                <div className="stat-label">Awards</div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="markets-section">
+          <div className="container py-5">
+            <div className="text-center mb-4">
+              <h2 className="markets-title">Markets to trade (Cfd Products)</h2>
+              <p className="markets-sub">With trillions traded daily across international markets, we offer a thoughtfully selected range of CFD instruments designed to help you begin trading with confidence and clarity</p>
+            </div>
+            <div className="row align-items-center g-4">
+              <div className="col-lg-4">
+                <div className="market-block">
+                  <h5>Forex</h5>
+                  <p>Buy & sell 60+ FX pairs like EURUSD, GBPUSD, AUDJPY, AUDUSD & USDCHF.</p>
+                </div>
+                <div className="market-block">
+                  <h5>Indices</h5>
+                  <p>Speculate on entire Sectors like US500, UK100, AU50 & EU50 from one position</p>
+                </div>
+                <div className="market-block">
+                  <h5>300+ Shares</h5>
+                  <p>Speculate on entire Sectors like US500, UK100, AU50 & EU50 from one position</p>
+                </div>
+              </div>
+              <div className="col-lg-4 d-flex justify-content-center">
+                <img src={laptopGraph} alt="Trading platform" className="laptop-graph" />
+              </div>
+              <div className="col-lg-4">
+                <div className="market-block">
+                  <h5>Forex</h5>
+                  <p>Buy & sell 60+ FX pairs like EURUSD, GBPUSD, AUDJPY, AUDUSD & USDCHF.</p>
+                </div>
+                <div className="market-block">
+                  <h5>Indices</h5>
+                  <p>Speculate on entire Sectors like US500, UK100, AU50 & EU50 from one position</p>
+                </div>
+                <div className="market-block">
+                  <h5>300+ Shares</h5>
+                  <p>Speculate on entire Sectors like US500, UK100, AU50 & EU50 from one position</p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* About */}
-      <div className="container top" id="about">
-        <div className="text-center">
-          <p className="text-secondary">{t("about_mission")}</p>
-          <h2 className="about-h2">{t("helping")}</h2>
-          <p className="fw-light text-secondary mt-3">{t("about_para")}</p>
-        </div>
-        <div className="row my-5" data-aos="zoom-out">
-          <div class="col-md-4 col-sm-12 card-main">
-            <div className="card1">
-              <div className="card-img">
-                {/* <img src={mission} /> */}
-              </div>
-              <h4 className="my-3">{t("our_mission")}</h4>
-              <p className="fw-lighter text-center">{t("mission_para")}</p>
+        </section>
+        <section className="accounts-section py-5">
+          <div className="container">
+            <div className="text-center mb-4">
+              <h2 className="accounts-title">Account Types</h2>
+              <p className="accounts-sub">
+                Register and select your account to start trading. Whether you are new to trading or a seasoned professional, we have a tier that matches your goals.
+              </p>
             </div>
-          </div>
-          <div class="col-md-4 col-sm-12 card-main">
-            <div className="card1 card2">
-              <div className="card-img">
-                {/* <img src={vision} /> */}
-              </div>
-              <h4 className="my-3">{t("our_vision")}</h4>
-              <p className="fw-lighter text-center">{t("vision_para")}</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-12 card-main">
-            <div className="card1 card3">
-              <div className="card-img">
-                {/* <img src={history} /> */}
-              </div>
-              <h4 className="my-3">{t("our_history")}</h4>
-              <p className="fw-lighter text-center">{t("history_para")}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Find Places */}
-      <div className="container top places-main text-center" id="places">
-        <div className="places-text" data-aos="zoom-out">
-          <h1 className="text-white">{t("find_places_with_ai")}</h1>
-        </div>
-        <div className="bar mt-5">
-          <div className="lit-box"></div>
-          <p className="mt-3">{t("business_writing")}</p>
-          <div className="AI">
-            {/* <img src={stars} className="AI-img" alt="Stars" /> */}
-            {t("ai")}
-          </div>
-        </div>
-      </div>
-
-      {/* Why Choose Us */}
-      <div className="container top" id="whyChooseUs">
-        <div className="row">
-          <div className="col-md-6 whyChooseUs-main">
-            <div className="whyChooseUs-img" data-aos="fade-right">
-              {/* <img src={whyChooseUs} /> */}
-            </div>
-          </div>
-          <div className="col-md-6">
-            <div className=" whyChooseUs-heading">
-              <p className="text-secondary fs-2">{t("why_choose")}</p>
-              <h2>{t("we_offer")}</h2>
-              <p className="text-secondary mt-4">{t("offer_para")}</p>
-
-              <div className="chooseUs-card d-flex">
-                {/* <img src={gear} /> */}
-                <div className="card-details">
-                  <h5>{t("offer_helpful")}</h5>
-                  <p>{t("helpful_para")}</p>
+            <div className="accounts-cards">
+              <div>
+                <div className="account-card">
+                  <h4 className="account-name">Standard</h4>
+                  <ul className="account-features">
+                    <li>Min $1,000 Deposit</li>
+                    <li>Market Spreads</li>
+                    <li>1:500 Max Leverage</li>
+                    <li>24/5 Support</li>
+                    <li>Training Courses</li>
+                  </ul>
+                  <a href="#open-account" className="btn account-btn">Open Account</a>
                 </div>
               </div>
-
-              <div className="chooseUs-card d-flex">
-                {/* <img src={blackCoupon} /> */}
-                <div className="card-details">
-                  <h5>{t("discount_coupons")}</h5>
-                  <p>{t("discount_para")}</p>
+              <div>
+                <div className="account-card account-card--active">
+                  <h4 className="account-name">Standard</h4>
+                  <ul className="account-features">
+                    <li>Min $1,000 Deposit</li>
+                    <li>Market Spreads</li>
+                    <li>1:500 Max Leverage</li>
+                    <li>24/5 Support</li>
+                    <li>Training Courses</li>
+                  </ul>
+                  <a href="#open-account" className="btn account-btn account-btn--dark">Open Account</a>
                 </div>
               </div>
-              <div className="chooseUs-card d-flex">
-                {/* <img src={event} /> */}
-                <div className="card-details">
-                  <h5>{t("enjoy_events")}</h5>
-                  <p>{t("events_para")}</p>
+              <div>
+                <div className="account-card">
+                  <h4 className="account-name">Standard</h4>
+                  <ul className="account-features">
+                    <li>Min $1,000 Deposit</li>
+                    <li>Market Spreads</li>
+                    <li>1:500 Max Leverage</li>
+                    <li>24/5 Support</li>
+                    <li>Training Courses</li>
+                  </ul>
+                  <a href="#open-account" className="btn account-btn">Open Account</a>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </div>
 
-      {/* Best Deals */}
-      <div className="container top deals text-center" id="bestDeals">
-        <div className="text-white pt-5">
-          {/* <p className="fs-4">{t("best_deals")}</p> */}
-          <h3 className="mb-4 heading-deals" style={{ marginLeft: "19rem", marginRight: "19rem" }}>{t("latest_coupon")}</h3>
-          <div className="row">
-            <div className="col-md-4">
-              <div className="top-deals">
-                {/* <img src={offer} /> */}
-                <h4 className="my-4">{t("best_offer")}</h4>
-                <p className="mx-5">{t("best_offer_para")}</p>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="top-deals">
-                {/* <img src={coupon} /> */}
-                <h4 className="my-4">{t("discount_coupon")}</h4>
-                <p className="mx-5">{t("dis_para")}</p>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="top-deals">
-                {/* <img src={topDeals} /> */}
-                <h4 className="my-4">{t("top_deals")}</h4>
-                <p className="mx-5">{t("places_para")}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Our Mobile App */}
-      <div className="container my-5 top" id="screenshot" data-aos="zoom-in">
-        <div className="text-center mb-4">
-          <p className="text-secondary fs-4">{t("mobile_app")}</p>
-          <h2>{t("myGiude_app")}</h2>
-        </div>
-        {/* <img
-          src={screenshot}
-          alt="Screenshot of Mobile App"
-          className="my-5 screenshots-mob-app w-100"
-        /> */}
-      </div>
-
-      {/* Download our App */}
-      <div className="container download-App-main" id="downloadApp">
-        <div className="row downloadApp text-center text-white">
-          <div className="col-md-12">
-            {/* <p className="fs-4">{t("both_platform")}</p> */}
-            <h1 className="fs-1 fw-bold">{t("download_mobApp")}</h1>
-            <p>{t("partner_login")}</p>
-            <div className="download-btn mt-5">
-              {/* <img src={downloadBtns} alt="downloadBtns" /> */}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

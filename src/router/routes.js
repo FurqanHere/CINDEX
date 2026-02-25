@@ -8,7 +8,7 @@ import TermsCondition from "../pages/TermsAndConditions";
 
 const AppRouter = () => {
     return (
-      <Router basename="">
+      <Router basename={process.env.REACT_APP_BASENAME || (process.env.NODE_ENV === 'development' ? '/CINDEX' : process.env.PUBLIC_URL || '/')}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/BecomePartner" element={<BecomePartner />} />
