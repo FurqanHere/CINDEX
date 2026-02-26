@@ -8,6 +8,7 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const navRef = useRef(null);
   const [indicator, setIndicator] = useState({ left: 0, width: 0, opacity: 0 });
+  const lastYRef = useRef(0);
 
   useEffect(() => {
     const onScroll = () => {
@@ -18,6 +19,8 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Disabled hide-on-scroll for static header behavior
+
   useEffect(() => {
     const el = navRef.current?.querySelector(".nav-link.active");
     if (!el) return;
@@ -26,7 +29,7 @@ const Header = () => {
     setIndicator({ left: r.left - pr.left, width: r.width, opacity: 1 });
   }, []);
 
-  const handleHover = (e) => {
+  const handleNavActivate = (e) => {
     const target = e.currentTarget;
     const r = target.getBoundingClientRect();
     const pr = navRef.current.getBoundingClientRect();
@@ -34,8 +37,8 @@ const Header = () => {
   };
 
   return (
-    <header className="cindex-header sticky-top">
-      <div className={`header-topbar ${scrolled ? "shadow-sm" : ""}`}>
+    <header className="cindex-header sticky-top" data-aos="fade-down">
+      <div className={`header-topbar ${scrolled ? "header-colored shadow-sm" : ""}`}>
         <div className="container px-5 d-flex align-items-center justify-content-between py-4">
           <div className="d-flex align-items-center">
             <img src={logo} alt="CINDEX" className="cindex-logo" />
@@ -50,31 +53,31 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="header-nav-wrapper">
+      <div className={`header-nav-wrapper ${scrolled ? "header-colored" : ""}`}>
         <div className="container px-5">
-          <div className="nav-container d-flex align-items-center justify-content-between ps-3 ps-md-4">
+          <div className="nav-container d-flex align-items-center justify-content-between ps-3 ps-md-4" data-aos="fade-up">
             <ul className="nav nav-underline gap-2 gap-md-3 position-relative" ref={navRef}>
               <div
                 className="nav-underline-indicator"
                 style={{ transform: `translateX(${indicator.left}px)`, width: indicator.width, opacity: indicator.opacity }}
               />
               <li className="nav-item">
-                <Link className="nav-link cindex-link active" to="/" onMouseEnter={handleHover}>Home</Link>
+                <Link className="nav-link cindex-link active" to="/" onClick={handleNavActivate}>Home</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link cindex-link" href="#product" onMouseEnter={handleHover}>Product</a>
+                <a className="nav-link cindex-link" href="#product" onClick={handleNavActivate}>Product</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link cindex-link" href="#accounts" onMouseEnter={handleHover}>Accounts</a>
+                <a className="nav-link cindex-link" href="#accounts" onClick={handleNavActivate}>Accounts</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link cindex-link" href="#platforms" onMouseEnter={handleHover}>Platforms</a>
+                <a className="nav-link cindex-link" href="#platforms" onClick={handleNavActivate}>Platforms</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link cindex-link" href="#insights" onMouseEnter={handleHover}>Insights</a>
+                <a className="nav-link cindex-link" href="#insights" onClick={handleNavActivate}>Insights</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link cindex-link" href="#company" onMouseEnter={handleHover}>Company</a>
+                <a className="nav-link cindex-link" href="#company" onClick={handleNavActivate}>Company</a>
               </li>
             </ul>
             <div className="auth-group">
@@ -89,3 +92,10 @@ const Header = () => {
 };
 
 export default Header;
+
+
+
+
+
+// Add aos animation, please add this animation exactly like the professional websites have
+// add this aos animation in the whole HomePage.jsx, Header.jsx and Footer.jsx
