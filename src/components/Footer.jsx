@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import { useTranslation } from "react-i18next";
 
@@ -16,10 +15,10 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="cindex-footer">
+    <footer className="cindex-footer" data-aos="fade-up" data-aos-delay="150">
       <div className="container py-5">
         <div className="row g-4">
-          <div className="col-lg-4">
+          <div className="col-lg-4" data-aos="fade-up" data-aos-delay="0">
             <h5 className="footer-head">Subscribe Us</h5>
             <div className="footer-subscribe">
               <input type="email" className="footer-input" placeholder="Enter Your Email" />
@@ -33,31 +32,31 @@ const Footer = () => {
               <a href="#" aria-label="YouTube" className="footer-social-link"><i className="bi bi-youtube"></i></a>
             </div>
           </div>
-          <div className="col-lg-2">
+          <div className="col-lg-2" data-aos="fade-up" data-aos-delay="100">
             <h5 className="footer-head">Quick links</h5>
             <nav className="footer-links">
-              <a href="#about">About Us</a>
-              <a href="#teams">Teams</a>
-              <a href="#services">Services</a>
-              <a href="#features">Features</a>
+              <span>About Us</span>
+              <span>Teams</span>
+              <span>Services</span>
+              <span>Features</span>
             </nav>
           </div>
-          <div className="col-lg-3">
+          <div className="col-lg-3" data-aos="fade-up" data-aos-delay="180">
             <h5 className="footer-head">Support</h5>
             <nav className="footer-links">
-              <Link to="/TermsCondition">Terms & Conditions</Link>
-              <Link to="/PrivacyPolicy">Privacy Policy</Link>
-              <a href="#faqs">FAQs</a>
-              <a href="#support">Support Center</a>
+              <span>Terms & Conditions</span>
+              <span>Privacy Policy</span>
+              <span>FAQs</span>
+              <span>Support Center</span>
             </nav>
           </div>
-          <div className="col-lg-3">
+          <div className="col-lg-3" data-aos="fade-up" data-aos-delay="260">
             <h5 className="footer-head">Company</h5>
             <nav className="footer-links">
-              <a href="#careers">Careers</a>
-              <a href="#updates">Updates</a>
-              <a href="#jobs">Job</a>
-              <a href="#announce">Announce</a>
+              <span>Careers</span>
+              <span>Updates</span>
+              <span>Job</span>
+              <span>Announce</span>
             </nav>
           </div>
         </div>

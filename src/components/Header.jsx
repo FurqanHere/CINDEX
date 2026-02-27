@@ -37,52 +37,132 @@ const Header = () => {
   };
 
   return (
-    <header className="cindex-header sticky-top" data-aos="fade-down">
-      <div className={`header-topbar ${scrolled ? "header-colored shadow-sm" : ""}`}>
-        <div className="container px-5 d-flex align-items-center justify-content-between py-4">
+    <header
+      className="cindex-header sticky-top"
+      data-aos="fade-down"
+      data-aos-delay="100"
+      data-aos-easing="ease-out-cubic"
+    >
+      <div
+        className={`header-topbar ${scrolled ? "header-colored shadow-sm" : ""}`}
+        data-aos="fade-down"
+        data-aos-delay="150"
+      >
+        <div className="container px-5 d-flex align-items-center justify-content-between py-3">
           <div className="d-flex align-items-center">
             <img src={logo} alt="CINDEX" className="cindex-logo" />
           </div>
           <div className="topbar-center d-none d-md-block">
-            Contact : +971 52 571 0831 &nbsp; | &nbsp; Email : cindex@trading.com
+            Contact : +971 52 571 0831 &nbsp; | &nbsp; Email :
+            cindex@trading.com
           </div>
           <div className="d-flex gap-2">
-            <button type="button" className="btn btn-individual px-3 rounded-3">Individual</button>
-            <button type="button" className="btn btn-institutional px-3 rounded-3">Institutional</button>
+            <button type="button" className="btn btn-individual px-3 ">
+              Individual
+            </button>
+            <button type="button" className="btn btn-institutional px-3 ">
+              Institutional
+            </button>
           </div>
         </div>
       </div>
 
-      <div className={`header-nav-wrapper ${scrolled ? "header-colored" : ""}`}>
+      <div
+        className={`header-nav-wrapper ${scrolled ? "header-colored" : ""}`}
+        data-aos="fade-up"
+        data-aos-delay="250"
+      >
         <div className="container px-5">
-          <div className="nav-container d-flex align-items-center justify-content-between ps-3 ps-md-4" data-aos="fade-up">
-            <ul className="nav nav-underline gap-2 gap-md-3 position-relative" ref={navRef}>
+          <div
+            className="nav-container d-flex align-items-center justify-content-between ps-3 ps-md-4"
+            data-aos="fade-up"
+          >
+            <ul
+              className="nav nav-underline gap-2 gap-md-3 position-relative"
+              ref={navRef}
+            >
               <div
                 className="nav-underline-indicator"
-                style={{ transform: `translateX(${indicator.left}px)`, width: indicator.width, opacity: indicator.opacity }}
+                style={{
+                  transform: `translateX(${indicator.left}px)`,
+                  width: indicator.width,
+                  opacity: indicator.opacity,
+                }}
               />
               <li className="nav-item">
-                <Link className="nav-link cindex-link active" to="/" onClick={handleNavActivate}>Home</Link>
+                <Link
+                  className="nav-link cindex-link active"
+                  to="/"
+                  onClick={handleNavActivate}
+                  data-aos="fade-up"
+                  data-aos-delay="0"
+                >
+                  Home
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link cindex-link" href="#product" onClick={handleNavActivate}>Product</a>
+                <a
+                  className="nav-link cindex-link"
+                  href="#product"
+                  onClick={handleNavActivate}
+                  data-aos="fade-up"
+                  data-aos-delay="60"
+                >
+                  Product
+                </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link cindex-link" href="#accounts" onClick={handleNavActivate}>Accounts</a>
+                <a
+                  className="nav-link cindex-link"
+                  href="#accounts"
+                  onClick={handleNavActivate}
+                  data-aos="fade-up"
+                  data-aos-delay="120"
+                >
+                  Accounts
+                </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link cindex-link" href="#platforms" onClick={handleNavActivate}>Platforms</a>
+                <a
+                  className="nav-link cindex-link"
+                  href="#platforms"
+                  onClick={handleNavActivate}
+                  data-aos="fade-up"
+                  data-aos-delay="180"
+                >
+                  Platforms
+                </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link cindex-link" href="#insights" onClick={handleNavActivate}>Insights</a>
+                <a
+                  className="nav-link cindex-link"
+                  href="#insights"
+                  onClick={handleNavActivate}
+                  data-aos="fade-up"
+                  data-aos-delay="240"
+                >
+                  Insights
+                </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link cindex-link" href="#company" onClick={handleNavActivate}>Company</a>
+                <a
+                  className="nav-link cindex-link"
+                  href="#company"
+                  onClick={handleNavActivate}
+                  data-aos="fade-up"
+                  data-aos-delay="300"
+                >
+                  Company
+                </a>
               </li>
             </ul>
             <div className="auth-group">
-              <Link to="/login" className="auth-login">Login</Link>
-              <Link to="/open-account" className="auth-open">Open Account</Link>
+              <Link to="/login" className="auth-login">
+                Login
+              </Link>
+              <Link to="/open-account" className="auth-open">
+                Open Account
+              </Link>
             </div>
           </div>
         </div>
@@ -92,10 +172,6 @@ const Header = () => {
 };
 
 export default Header;
-
-
-
-
 
 // Add aos animation, please add this animation exactly like the professional websites have
 // add this aos animation in the whole HomePage.jsx, Header.jsx and Footer.jsx
