@@ -102,8 +102,12 @@ body {
   );
   color: #fff;
   overflow: hidden;
-  margin-top: calc(-1 * var(--hero-overlap));
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding-top: var(--hero-overlap);
+  padding-bottom: 80px;
 }
 .cindex-hero .container {
   position: relative;
@@ -245,12 +249,19 @@ body {
 }
 
 .hero-media img {
-  width: 100%;
+  width: 85%;
+  height: auto;
+  max-width: 100%;
   transition:
     transform 280ms ease,
     filter 280ms ease,
     box-shadow 280ms ease;
   will-change: transform, filter;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
 }
 
 .cindex-logo {
@@ -420,31 +431,65 @@ body {
 .btn-individual {
   background: #2bad3f;
   color: #fff;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, transform 200ms ease, box-shadow 200ms ease;
   border-radius: 7px;
   height: 40px;
-  width: 100%;
   font-weight: 500;
   font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn-institutional {
   background: #5561de;
   color: #fff;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, transform 200ms ease, box-shadow 200ms ease;
   border-radius: 7px;
   font-weight: 500;
   font-size: 15px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn-individual:hover,
 .btn-individual:focus {
   background: #24973b;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
 }
 
 .btn-institutional:hover,
 .btn-institutional:focus {
   background: #4753c8;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+}
+
+.btn-individual::before,
+.btn-institutional::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -140%;
+  width: 140%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.35) 50%, transparent 100%);
+  transform: translateX(0);
+  transition: transform 600ms ease;
+  pointer-events: none;
+}
+.btn-individual:hover::before,
+.btn-individual:focus::before,
+.btn-institutional:hover::before,
+.btn-institutional:focus::before {
+  transform: translateX(140%);
 }
 
 .market-slider-section {
@@ -527,7 +572,7 @@ body {
 }
 
 .market-card-body {
-  margin-top: 14px;
+  margin-top: 7px;
 }
 
 .market-card:hover {
@@ -541,11 +586,11 @@ body {
 
 .award-title {
   font-weight: 800;
-  color: #0f172a;
-  font-size: 18px;
+  color: #000;
+  font-size: 16px;
 }
 .award-source {
-  color: #64748b;
+  color: #818181;
   font-size: 14px;
 }
 
@@ -555,8 +600,8 @@ body {
   gap: 14px;
 }
 .award-deco {
-  width: 44px;
-  height: 44px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
 }
 
@@ -969,7 +1014,7 @@ body {
 .markets-section .market-block:hover p {
   color: rgba(255, 255, 255, 0.95);
 }
-/* ensure below-laptop block sits under the image if overlapping */
+
 .markets-section .market-block.mt-3 {
   position: relative;
   z-index: 1;
@@ -981,12 +1026,7 @@ body {
 
 /* Accounts section */
 .accounts-section {
-  background: linear-gradient(
-    180deg,
-    rgba(9, 33, 80, 1) 0%,
-    rgba(11, 47, 110, 1) 60%,
-    rgba(12, 54, 122, 1) 100%
-  );
+  background: #162b67;
   color: #fff;
 }
 .accounts-title {
@@ -1079,8 +1119,10 @@ body {
 }
 
 .cindex-header {
-  position: sticky;
+  position: absolute;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1030;
   transition: transform 250ms ease-in-out;
   will-change: transform;

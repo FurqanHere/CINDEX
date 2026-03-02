@@ -73,6 +73,7 @@ const HomePage = () => {
   const ecosystemThumbRef = useRef(null);
   const [investorActive, setInvestorActive] = useState(1);
   const [ecoActive, setEcoActive] = useState(1);
+  const [activeAccount, setActiveAccount] = useState(1);
 
   useEffect(() => {
     const currentLang = i18n.language;
@@ -92,8 +93,6 @@ const HomePage = () => {
     window.addEventListener("resize", updateHeroOverlap);
     return () => window.removeEventListener("resize", updateHeroOverlap);
   }, []);
-
-  // Heights handled via CSS classes per section
 
   useEffect(() => {
     const list = investorsListRef.current;
@@ -213,6 +212,12 @@ const HomePage = () => {
     };
   }, []);
 
+  const getDecoUrl = (idx) => {
+    const mod = idx % 3;
+    const name = mod === 0 ? "deco.png" : mod === 1 ? "deco2.png" : "deco3.png";
+    return `${process.env.PUBLIC_URL}/assets/images/${name}`;
+  };
+
   return (
     <>
       <div>
@@ -227,7 +232,7 @@ const HomePage = () => {
             playsInline
           />
           <div className="hero-video-overlay"></div>
-          <div className="container">
+          <div className="container hero-content">
             <div className="row align-items-center">
               <div className="col-lg-6 col-md-7">
                 <h1 className="hero-heading" data-aos="fade-up" data-aos-delay="120">
@@ -533,54 +538,35 @@ const HomePage = () => {
               </p>
             </div>
             <div className="accounts-cards">
-              <div data-aos="zoom-in-up" data-aos-delay="0">
-                <div className="account-card">
-                  <h4 className="account-name">Standard</h4>
-                  <ul className="account-features">
-                    <li>Min $1,000 Deposit</li>
-                    <li>Market Spreads</li>
-                    <li>1:500 Max Leverage</li>
-                    <li>24/5 Support</li>
-                    <li>Training Courses</li>
-                  </ul>
-                  <a href="#open-account" className="btn account-btn">
-                    Open Account
-                  </a>
-                </div>
-              </div>
-              <div data-aos="zoom-in-up" data-aos-delay="120">
-                <div className="account-card account-card--active">
-                  <h4 className="account-name">Standard</h4>
-                  <ul className="account-features">
-                    <li>Min $1,000 Deposit</li>
-                    <li>Market Spreads</li>
-                    <li>1:500 Max Leverage</li>
-                    <li>24/5 Support</li>
-                    <li>Training Courses</li>
-                  </ul>
-                  <a
-                    href="#open-account"
-                    className="btn account-btn account-btn--dark"
+              {[
+                { delay: 0 },
+                { delay: 120 },
+                { delay: 240 }
+              ].map((card, idx) => (
+                <div key={idx} data-aos="zoom-in-up" data-aos-delay={card.delay}>
+                  <div 
+                    className={`account-card ${idx === activeAccount ? "account-card--active" : ""}`}
+                    onClick={() => setActiveAccount(idx)}
+                    style={{ cursor: 'pointer' }}
                   >
-                    Open Account
-                  </a>
+                    <h4 className="account-name">Standard</h4>
+                    <ul className="account-features">
+                      <li>Min $1,000 Deposit</li>
+                      <li>Market Spreads</li>
+                      <li>1:500 Max Leverage</li>
+                      <li>24/5 Support</li>
+                      <li>Training Courses</li>
+                    </ul>
+                    <a 
+                      href="#open-account" 
+                      className={`btn account-btn ${idx === activeAccount ? "account-btn--dark" : ""}`}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Open Account
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <div data-aos="zoom-in-up" data-aos-delay="240">
-                <div className="account-card">
-                  <h4 className="account-name">Standard</h4>
-                  <ul className="account-features">
-                    <li>Min $1,000 Deposit</li>
-                    <li>Market Spreads</li>
-                    <li>1:500 Max Leverage</li>
-                    <li>24/5 Support</li>
-                    <li>Training Courses</li>
-                  </ul>
-                  <a href="#open-account" className="btn account-btn">
-                    Open Account
-                  </a>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
@@ -758,7 +744,15 @@ const HomePage = () => {
                   >
                     <div className="market-card">
                       <div className="market-card-body award-row">
-                        <img src={deco} alt="" className="award-deco" />
+                        <img
+                          src={getDecoUrl(idx)}
+                          alt=""
+                          className="award-deco"
+                          onError={(e) => {
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = deco;
+                          }}
+                        />
                         <div>
                           <div className="award-title">{i.title}</div>
                           <div className="award-source">{i.source}</div>

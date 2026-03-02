@@ -38,7 +38,7 @@ const Header = () => {
 
   return (
     <header
-      className="cindex-header sticky-top"
+      className="cindex-header"
       data-aos="fade-down"
       data-aos-delay="100"
       data-aos-easing="ease-out-cubic"
