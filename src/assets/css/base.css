@@ -332,6 +332,7 @@ body {
 
 .cindex-link.active {
   color: #000 !important;
+  margin-bottom: 3px;
 }
 
 .btn-login {
@@ -380,7 +381,7 @@ body {
 }
 .nav-underline-indicator {
   position: absolute;
-  bottom: 0;
+  bottom: 8px;
   height: 3px;
   background: #0b5ed7;
   border-radius: 2px;
@@ -564,7 +565,7 @@ body {
     transform 180ms ease,
     filter 180ms ease;
 }
-/* Remove graph background within Market slider only */
+
 .market-slider-section .graph-img {
   background: transparent !important;
   padding: 0 !important;
@@ -783,7 +784,6 @@ body {
   object-fit: contain;
 }
 
-/* Equal heights: INVESTORS section (left image + right list) */
 @media (min-width: 992px) {
   .invest-left,
   .invest-right,
@@ -1085,12 +1085,12 @@ body {
   color: rgba(255, 255, 255, 0.95);
 }
 .account-card--active .account-features {
-  color: #64748b;
+  color: #898989;
 }
 .account-btn {
   background: var(--cindex-gold-gradient);
   color: #000;
-  font-weight: 700;
+  font-weight: 500;
   border-radius: 12px;
   padding: 10px 18px;
   transition:
@@ -1109,7 +1109,6 @@ body {
   box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
   background-position: right;
   color: #000;
-  font-weight: 500;
 }
 .account-btn:hover,
 .account-btn--dark:hover {

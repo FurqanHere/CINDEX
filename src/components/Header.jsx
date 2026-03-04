@@ -22,16 +22,24 @@ const Header = () => {
   // Disabled hide-on-scroll for static header behavior
 
   useEffect(() => {
-    const el = navRef.current?.querySelector(".nav-link.active");
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    const pr = navRef.current.getBoundingClientRect();
-    setIndicator({ left: r.left - pr.left, width: r.width, opacity: 1 });
+    const updateIndicator = () => {
+      const el = navRef.current?.querySelector(".nav-link.active");
+      if (!el) return;
+      const span = el.querySelector("span") || el;
+      const r = span.getBoundingClientRect();
+      const pr = navRef.current.getBoundingClientRect();
+      setIndicator({ left: r.left - pr.left, width: r.width, opacity: 1 });
+    };
+
+    updateIndicator();
+    window.addEventListener("resize", updateIndicator);
+    return () => window.removeEventListener("resize", updateIndicator);
   }, []);
 
   const handleNavActivate = (e) => {
     const target = e.currentTarget;
-    const r = target.getBoundingClientRect();
+    const span = target.querySelector("span") || target;
+    const r = span.getBoundingClientRect();
     const pr = navRef.current.getBoundingClientRect();
     setIndicator({ left: r.left - pr.left, width: r.width, opacity: 1 });
   };
@@ -97,7 +105,7 @@ const Header = () => {
                   data-aos="fade-up"
                   data-aos-delay="0"
                 >
-                  Home
+                  <span>Home</span>
                 </Link>
               </li>
               <li className="nav-item">
@@ -108,7 +116,7 @@ const Header = () => {
                   data-aos="fade-up"
                   data-aos-delay="60"
                 >
-                  Product
+                  <span>Product</span>
                 </a>
               </li>
               <li className="nav-item">
@@ -119,7 +127,7 @@ const Header = () => {
                   data-aos="fade-up"
                   data-aos-delay="120"
                 >
-                  Accounts
+                  <span>Accounts</span>
                 </a>
               </li>
               <li className="nav-item">
@@ -130,7 +138,7 @@ const Header = () => {
                   data-aos="fade-up"
                   data-aos-delay="180"
                 >
-                  Platforms
+                  <span>Platforms</span>
                 </a>
               </li>
               <li className="nav-item">
@@ -141,7 +149,7 @@ const Header = () => {
                   data-aos="fade-up"
                   data-aos-delay="240"
                 >
-                  Insights
+                  <span>Insights</span>
                 </a>
               </li>
               <li className="nav-item">
@@ -152,7 +160,7 @@ const Header = () => {
                   data-aos="fade-up"
                   data-aos-delay="300"
                 >
-                  Company
+                  <span>Company</span>
                 </a>
               </li>
             </ul>
